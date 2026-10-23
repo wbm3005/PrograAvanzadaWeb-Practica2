@@ -1,0 +1,49 @@
+/* Ajustes propios sobre la plantilla Spark (lib/spark/css/main.css). */
+
+/* La barra superior solo muestra los botones del menú y la bienvenida. */
+.navbar-custom {
+    grid-template-columns: 1fr !important;
+}
+
+.navbar-bienvenida {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.navbar-bienvenida i {
+    color: var(--brand-forest-medium);
+}
+
+.inicio-icono {
+    font-size: 2.5rem;
+    line-height: 1;
+    opacity: 1;
+}
+
+/* Validación: Spark solo define el estado inválido para inputs, no para selects. */
+.form-select-custom.is-invalid-custom,
+.form-control-custom.input-validation-error,
+.form-select-custom.input-validation-error {
+    border-color: var(--sys-red) !important;
+}
+
+.form-feedback-custom.field-validation-valid,
+.resumen-validacion.validation-summary-valid {
+    display: none;
+}
+
+.resumen-validacion ul {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+.alert-custom {
+    transition: opacity 0.3s ease;
+}
+
+.alert-custom.alerta-cerrando {
+    opacity: 0;
+}

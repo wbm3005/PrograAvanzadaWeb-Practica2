@@ -1,0 +1,35 @@
+@Practica2.Api_HostAddress = https://localhost:7147
+
+GET {{Practica2.Api_HostAddress}}/api/clientes
+Accept: application/json
+
+###
+
+POST {{Practica2.Api_HostAddress}}/api/clientes
+Content-Type: application/json
+
+{
+  "cedula": "TEST-001",
+  "nombre": "Cliente de prueba",
+  "correo": "prueba@correo.com"
+}
+
+###
+
+GET {{Practica2.Api_HostAddress}}/api/mascotas
+Accept: application/json
+
+###
+
+POST {{Practica2.Api_HostAddress}}/api/mascotas
+Content-Type: application/json
+
+{
+  "nombre": "Firulais",
+  "especie": "Perro",
+  "raza": "Zaguate",
+  "peso": 12.5,
+  "idCliente": 1
+}
+
+###

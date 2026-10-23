@@ -1,0 +1,52 @@
+@model MascotasConsultaViewModel
+@{
+    ViewData["Title"] = "Consulta de Mascotas";
+    ViewData["Subtitulo"] = "Todas las mascotas registradas en el sistema.";
+}
+
+@if (Model.Error is not null)
+{
+    <div class="alert-custom alert-custom-danger" role="alert">
+        <i class="bi bi-exclamation-octagon-fill alert-custom-icon"></i>
+        <div class="alert-custom-content">@Model.Error</div>
+    </div>
+}
+else if (Model.Mascotas.Count == 0)
+{
+    <div class="card p-4 border-light shadow-sm text-center">
+        <div class="mb-3 text-lime empty-state-icon">
+            <i class="bi bi-inbox-fill"></i>
+        </div>
+        <p class="text-muted-green mb-0">No hay mascotas registradas.</p>
+    </div>
+}
+else
+{
+    <div class="table-card-custom">
+        <div class="table-responsive">
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th scope="col">Cédula del cliente</th>
+                        <th scope="col">Nombre del cliente</th>
+                        <th scope="col">Nombre de la mascota</th>
+                        <th scope="col">Especie</th>
+                        <th scope="col" class="text-end">Peso (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var mascota in Model.Mascotas)
+                    {
+                        <tr>
+                            <td>@mascota.CedulaCliente</td>
+                            <td>@mascota.NombreCliente</td>
+                            <td class="table-product-name">@mascota.NombreMascota</td>
+                            <td>@mascota.Especie</td>
+                            <td class="text-end">@mascota.Peso.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

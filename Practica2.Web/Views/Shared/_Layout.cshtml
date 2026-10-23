@@ -1,0 +1,119 @@
+@{
+    var controladorActual = ViewContext.RouteData.Values["controller"] as string;
+    var accionActual = ViewContext.RouteData.Values["action"] as string;
+
+    bool EsActual(string controlador, string accion) =>
+        string.Equals(controladorActual, controlador, StringComparison.OrdinalIgnoreCase)
+        && string.Equals(accionActual, accion, StringComparison.OrdinalIgnoreCase);
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Registro de Mascotas</title>
+    <link rel="icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/lib/spark/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/spark/bootstrap-icons/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/lib/spark/css/main.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <aside class="sidebar-wrapper" id="sidebar">
+        <a asp-controller="Home" asp-action="Index" class="sidebar-brand" title="Ir al inicio">
+            <i class="bi bi-heart-pulse-fill"></i>
+            <span>Registro de Mascotas</span>
+        </a>
+
+        <nav class="flex-grow-1 overflow-y-auto" aria-label="Menú principal">
+            <div class="sidebar-menu-section">
+                <div class="sidebar-menu-title">Menú</div>
+                <ul class="sidebar-menu-list">
+                    <li class="sidebar-menu-item">
+                        <a asp-controller="Clientes" asp-action="Registro" class="sidebar-menu-link @(EsActual("Clientes", "Registro") ? "active" : null)"
+                           aria-current="@(EsActual("Clientes", "Registro") ? "page" : null)" title="Registro de Clientes">
+                            <i class="bi bi-person-plus-fill"></i>
+                            <span>Registro de Clientes</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a asp-controller="Mascotas" asp-action="Registro" class="sidebar-menu-link @(EsActual("Mascotas", "Registro") ? "active" : null)"
+                           aria-current="@(EsActual("Mascotas", "Registro") ? "page" : null)" title="Registro de Mascotas">
+                            <i class="bi bi-clipboard-plus-fill"></i>
+                            <span>Registro de Mascotas</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a asp-controller="Mascotas" asp-action="Consulta" class="sidebar-menu-link @(EsActual("Mascotas", "Consulta") ? "active" : null)"
+                           aria-current="@(EsActual("Mascotas", "Consulta") ? "page" : null)" title="Consulta de Mascotas">
+                            <i class="bi bi-table"></i>
+                            <span>Consulta de Mascotas</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper">
+        <header class="navbar-custom">
+            <div class="navbar-left">
+                <button type="button" class="btn-desktop-toggle d-none d-xl-flex align-items-center justify-content-center me-3"
+                        id="desktop-sidebar-toggle" aria-label="Minimizar menú">
+                    <i class="bi bi-chevron-bar-left"></i>
+                </button>
+                <button type="button" class="sidebar-toggle-btn me-2" id="sidebar-toggle" aria-label="Mostrar menú">
+                    <i class="bi bi-list"></i>
+                </button>
+                <p class="navbar-bienvenida mb-0">
+                    <i class="bi bi-emoji-smile"></i>
+                    ¡Bienvenido(a) al sistema de Registro de Mascotas!
+                </p>
+            </div>
+        </header>
+
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">@ViewData["Title"]</h1>
+                @if (ViewData["Subtitulo"] is string subtitulo)
+                {
+                    <p class="page-subtitle">@subtitulo</p>
+                }
+            </div>
+        </div>
+
+        <main role="main" class="flex-grow-1">
+            @if (TempData["Exito"] is string mensajeExito)
+            {
+                <div class="alert-custom alert-custom-success" role="alert" data-autocierre>
+                    <i class="bi bi-check-circle-fill alert-custom-icon"></i>
+                    <div class="alert-custom-content">@mensajeExito</div>
+                    <button type="button" class="alert-custom-close" aria-label="Cerrar">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            }
+
+            @RenderBody()
+        </main>
+
+        <footer class="footer-custom">
+            <div class="footer-left">
+                <span class="footer-logo">
+                    <i class="bi bi-heart-pulse-fill"></i> Registro de Mascotas
+                </span>
+                <span class="footer-separator">|</span>
+                <span class="footer-copy">
+                    &copy; @DateTime.Now.Year · Plantilla <a href="https://sparkadminpro.gumroad.com/" target="_blank" rel="noopener">Spark Admin</a>,
+                    distribuida por <a href="https://themewagon.com/" target="_blank" rel="noopener">ThemeWagon</a>
+                </span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/spark/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

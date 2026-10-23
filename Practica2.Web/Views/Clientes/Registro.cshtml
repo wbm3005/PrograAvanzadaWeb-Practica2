@@ -1,0 +1,43 @@
+@model ClienteRegistroViewModel
+@{
+    ViewData["Title"] = "Registro de Clientes";
+    ViewData["Subtitulo"] = "Todos los campos son obligatorios.";
+}
+
+<div class="row">
+    <div class="col-12 col-lg-8 col-xl-6">
+        <div class="card border-light shadow-sm p-4">
+            <h2 class="card-title mb-4">Datos del cliente</h2>
+
+            <form asp-controller="Clientes" asp-action="Registro" method="post" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert-custom alert-custom-danger resumen-validacion" role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Cedula" class="form-label-custom"></label>
+                    <input asp-for="Cedula" class="form-control-custom" placeholder="Ej.: 1-2345-6789" autocomplete="off" />
+                    <span asp-validation-for="Cedula" class="form-feedback-custom invalid-custom"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label-custom"></label>
+                    <input asp-for="Nombre" class="form-control-custom" placeholder="Nombre completo" autocomplete="name" />
+                    <span asp-validation-for="Nombre" class="form-feedback-custom invalid-custom"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Correo" class="form-label-custom"></label>
+                    <input asp-for="Correo" type="email" class="form-control-custom" placeholder="nombre@correo.com" autocomplete="email" />
+                    <span asp-validation-for="Correo" class="form-feedback-custom invalid-custom"></span>
+                </div>
+
+                <button type="submit" class="btn-custom btn-custom-primary">
+                    <i class="bi bi-person-check-fill"></i> Registrar cliente
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

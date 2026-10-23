@@ -1,0 +1,16 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+    ViewData["Subtitulo"] = "Ocurrió un problema al procesar su solicitud.";
+}
+
+<div class="alert-custom alert-custom-danger" role="alert">
+    <i class="bi bi-exclamation-octagon-fill alert-custom-icon"></i>
+    <div class="alert-custom-content">
+        Lo sentimos, ocurrió un error inesperado. Intente de nuevo más tarde.
+        @if (Model.ShowRequestId)
+        {
+            <div class="small mt-1">Código de referencia: <code>@Model.RequestId</code></div>
+        }
+    </div>
+</div>
