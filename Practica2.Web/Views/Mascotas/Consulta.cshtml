@@ -4,6 +4,12 @@
     ViewData["Subtitulo"] = "Todas las mascotas registradas en el sistema.";
 }
 
+@section Acciones {
+    <a asp-controller="Mascotas" asp-action="Registro" class="btn-custom btn-custom-primary">
+        <i class="bi bi-plus-lg"></i> Registrar mascota
+    </a>
+}
+
 @if (Model.Error is not null)
 {
     <div class="alert-custom alert-custom-danger" role="alert">
