@@ -29,8 +29,9 @@ public sealed class MascotasController(
                 var resultado = await mascotasService.RegistrarAsync(modelo, cancellationToken);
                 if (resultado.Exito)
                 {
+                    // Se va a la consulta para que el usuario vea la mascota recién agregada en la tabla.
                     TempData["Exito"] = resultado.Mensaje;
-                    return RedirectToAction(nameof(Registro));
+                    return RedirectToAction(nameof(Consulta));
                 }
 
                 ModelState.AddModelError(string.Empty, resultado.Mensaje);
